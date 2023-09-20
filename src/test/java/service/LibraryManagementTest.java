@@ -27,10 +27,14 @@ class LibraryManagementTest {
 
     @org.junit.jupiter.api.Test
     void allBooksByCertainAuthor() {
+        //        - Create a function that retrieves all books written by a certain author.
         List<LibraryItems> books = List.of(booksOne,booksTwo, booksThree);
-        LocalDate birthday = LocalDate.of(2022, 22,1);
+        LocalDate birthday = LocalDate.of(2022, 12,1);
         Creative author = new Creative(1,"Frank",birthday );
-        libraryManagement.allBooksByCertainAuthor(books, author);
+        List<LibraryItems> actual = libraryManagement.allBooksByCertainAuthor(books, author);
+        List<LibraryItems> expected = List.of(booksOne,booksThree);
+
+        Assertions.assertEquals(expected,actual);
     }
 
     @org.junit.jupiter.api.Test
@@ -48,5 +52,15 @@ class LibraryManagementTest {
 
     @org.junit.jupiter.api.Test
     void allauthorsAndArtistsHowWhereBornInACertainDecade() {
+        //        - Create a function that retrieves all authors and artists who were born in the 90’s
+
+        LocalDate birthday = LocalDate.of(2022, 12,1);
+        LocalDate birthdayTwo = LocalDate.of(1990, 12,1);
+        Creative author = new Creative(1,"Frank",birthday );
+        Creative authorTwo = new Creative(1,"Daniel",birthdayTwo );
+        List<Creative> creatives = List.of(author, authorTwo);
+        List<Creative> actual = libraryManagement.allauthorsAndArtistsHowWhereBornInACertainDecade(creatives);
+        List<Creative> expected = List.of(authorTwo);
+        Assertions.assertEquals(expected, actual);
     }
 }

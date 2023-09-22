@@ -10,9 +10,12 @@ import java.util.List;
 
 public class LibraryManagement {
 
-    public List<LibraryItems> allBooksByCertainAuthor(List<LibraryItems> books, Creative author) {
+
+    public List<LibraryItems> allBooksByCertainAuthor(List<LibraryItems> items, Creative author) {
         //        - Create a function that retrieves all books written by a certain author.
-        return books.stream().filter(book->book.name().equals(author.name())).toList();
+        return items.stream()
+                .filter(item -> item instanceof Book)
+                .filter(book->book.name().equals(author.name())).toList();
     }
 
 
